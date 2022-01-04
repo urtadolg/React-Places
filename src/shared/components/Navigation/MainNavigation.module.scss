@@ -1,0 +1,60 @@
+@import "../../../styles";
+
+.menu_btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+
+  span {
+    display: block;
+    width: 2rem;
+    height: 3px;
+    background: $white;
+  }
+}
+
+h1 {
+  a {
+    color: $white;
+    text-decoration: none;
+  }
+}
+
+.nav_container {
+  margin-left: auto;
+
+  .nav_links {
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+}
+
+.slide-enter {
+  transform: translateX(-100%);
+}
+
+.slide-enter-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition: all 200ms;
+}
+
+.slide-exit {
+  transform: translateX(0%);
+  opacity: 1;
+}
+
+.slide-exit-active {
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: all 200ms;
+}

@@ -1,0 +1,37 @@
+@import "../../../styles";
+
+.label_input_container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  .label {
+    font-weight: 600;
+  }
+
+  .input,
+  .textarea {
+    border-style: none;
+    border: $light_gray solid 1px;
+    line-height: 1.5rem;
+    padding: 0.15rem 0.5rem;
+    font: inherit;
+
+    &:focus {
+      background-color: #ebebeb;
+      outline: none;
+      border-color: #510077;
+    }
+  }
+
+  .invalid_input {
+    background-color: $pink;
+    border-color: $red;
+  }
+
+  .invalid_label,
+  .invalid_message,
+  .invalid_input {
+    color: $red;
+  }
+}

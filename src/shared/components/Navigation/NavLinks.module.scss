@@ -1,0 +1,28 @@
+@import "../../../styles";
+
+.links_container {
+  display: flex;
+  gap: 15px;
+  color: $white;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    color: $secondary;
+  }
+
+  a {
+    padding: 0.5rem;
+    text-decoration: none;
+    border: transparent solid 1px;
+    color: inherit;
+  }
+
+  .navLink_active,
+  a:hover {
+    background-color: $primary;
+    border: $secondary solid 1px;
+    cursor: pointer;
+    color: $secondary;
+  }
+}

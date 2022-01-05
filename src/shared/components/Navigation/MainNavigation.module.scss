@@ -30,8 +30,16 @@ h1 {
 
 .nav_container {
   margin-left: auto;
+  height: 100%;
 
   .nav_links {
+    margin: 0;
+    height: 100%;
+
+    li {
+      align-self: center;
+    }
+
     @media (max-width: 768px) {
       display: none;
     }

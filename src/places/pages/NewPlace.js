@@ -1,47 +1,17 @@
-import React, { useCallback, useReducer } from "react";
+import React from "react";
 
+import { useForm } from "../../shared/hooks/form-hook";
 import {
   VALIDATOR_MINLENGTH,
   VALIDATOR_REQUIRE,
 } from "../../shared/util/validators";
 import Input from "../../shared/components/FormElements/Input";
 import Button from "../../shared/components/FormElements/Button";
-import styles from "./NewPlace.module.scss";
-
-const formValidation = (state, action) => {
-  switch (action.type) {
-    case "INPUT_CHANGE":
-      let formValidity = true;
-
-      for (const inputId in state.inputs) {
-        if (inputId === action.id) {
-          formValidity = formValidity && action.isValid;
-        } else {
-          formValidity = formValidity && state.inputs[inputId].isValid;
-        }
-      }
-
-      return {
-        ...state,
-        inputs: {
-          ...state.inputs,
-          [action.id]: {
-            value: action.value,
-            isValid: action.isValid,
-          },
-        },
-
-        isValid: formValidity,
-      };
-
-    default:
-      return state;
-  }
-};
+import styles from "./StylePlace.module.scss";
 
 const NewPlace = () => {
-  const [formState, dispatch] = useReducer(formValidation, {
-    inputs: {
+  const [formState, inputHandler] = useForm(
+    {
       title: {
         value: "",
         isValid: false,
@@ -50,19 +20,21 @@ const NewPlace = () => {
         value: "",
         isValid: false,
       },
+      address: {
+        value: "",
+        isValid: false,
+      },
     },
-    isValid: false,
-  });
-
-  const inputHandler = useCallback(
-    (id, value, isValid) => {
-      dispatch({ type: "INPUT_CHANGE", id, value, isValid });
-    },
-    [dispatch]
+    false
   );
 
+  const formSubmitHandler = (event) => {
+    event.preventDefault();
+    console.log(formState.inputs);
+  };
+
   return (
-    <form className={styles.form_container}>
+    <form onSubmit={formSubmitHandler} className={styles.form_container}>
       <Input
         id="title"
         validators={[VALIDATOR_REQUIRE()]}
@@ -81,6 +53,15 @@ const NewPlace = () => {
         errorMessage={
           "Please, enter a valid description (at least 5 characters)."
         }
+      />
+      <Input
+        id="address"
+        validators={[VALIDATOR_REQUIRE()]}
+        onInput={inputHandler}
+        element={"input"}
+        type="text"
+        label="Address"
+        errorMessage={"Please, enter a valid address."}
       />
       <Button type="submit" disabled={!formState.isValid}>
         ADD PLACE

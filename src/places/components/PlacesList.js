@@ -2,13 +2,15 @@ import React from "react";
 
 import PlaceItem from "./PlaceItem";
 import Card from "../../shared/components/UIElements/Card";
+import Button from "../../shared/components/FormElements/Button";
 import styles from "./PlacesList.module.scss";
 
 const PlacesList = (props) => {
   if (props.places.length === 0) {
     return (
-      <Card>
-        <h1>There are no places added.</h1>
+      <Card className={styles.empty_container}>
+        <h1>No places found.</h1>
+        <Button to="/places/new">ADD NEW PLACE</Button>
       </Card>
     );
   }

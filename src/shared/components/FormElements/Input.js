@@ -24,10 +24,10 @@ const reducerFunction = (state, action) => {
 
 const Input = (props) => {
   const [inputState, dispatch] = useReducer(reducerFunction, {
-    value: "",
+    value: props.value || "",
     validators: props.validators,
     isTouched: false,
-    isValid: false,
+    isValid: props.isValid || false,
   });
 
   const blurHandler = () => dispatch({ type: "TOUCH" });
